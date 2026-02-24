@@ -7,9 +7,11 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import re
 import ssl
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # ==========================================
 # MAC SSL FIX & NLTK SETUP
@@ -90,3 +92,21 @@ print(f"FINAL PROJECT ACCURACY: {accuracy * 100:.2f}%")
 print("==========================================\n")
 print("Detailed Report:")
 print(classification_report(y_test, predictions, target_names=['Negative', 'Positive']))
+
+# ==========================================
+# STEP 5: SAVE CONFUSION MATRIX
+# ==========================================
+os.makedirs("images", exist_ok=True)
+
+cm = confusion_matrix(y_test, predictions)
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['Negative', 'Positive'],
+            yticklabels=['Negative', 'Positive'])
+plt.title('Confusion Matrix - Naive Bayes Sentiment Analysis')
+plt.ylabel('Actual Label')
+plt.xlabel('Predicted Label')
+plt.tight_layout()
+plt.savefig("images/confusion_matrix.png", dpi=150)
+plt.close()
+print("Confusion matrix saved to images/confusion_matrix.png")

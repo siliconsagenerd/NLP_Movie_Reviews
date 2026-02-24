@@ -1,0 +1,1 @@
+The 50,000 IMDb Movie Review dataset used in this project is too large to host directly on GitHub. You can download the official dataset from the Stanford AI Lab here: https://ai.stanford.edu/~amaas/data/sentiment/
