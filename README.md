@@ -1,76 +1,58 @@
-# 🎬 IMDb Movie Review Sentiment Analysis
+# IMDb Movie Review Sentiment Analysis
 
-> **An automated, end-to-end Natural Language Processing (NLP) pipeline for binary sentiment classification using TF-IDF and Multinomial Naive Bayes.**
+A sentiment classifier trained on 50,000 IMDb movie reviews using TF-IDF and Naive Bayes.
 
-## 📌 Project Overview
-This repository contains a robust machine learning baseline model designed to classify the sentiment of 50,000 IMDb movie reviews. By applying strict text preprocessing (lemmatization, stop-word removal, regex cleaning) and Term Frequency-Inverse Document Frequency (TF-IDF) vectorization, the model categorizes reviews as either Positive or Negative with a solid baseline accuracy of **84.00%**.
+## Overview
+This project classifies movie reviews as positive or negative using the [Stanford IMDb dataset](https://ai.stanford.edu/~amaas/data/sentiment/). Reviews are cleaned with lemmatization and stop word removal, then vectorized with TF-IDF before being passed to a Multinomial Naive Bayes classifier.
 
-Unlike typical academic scripts that require manual dataset configuration, this project features a **fully automated pipeline**. A single execution of `main.py` handles everything from fetching the Stanford dataset to generating visual evaluation metrics.
+The script automatically downloads the dataset on first run, so no manual setup is needed.
 
-## ✨ Key Features
-* **Zero-Setup Data Fetching:** The script automatically downloads and extracts the 50k Stanford IMDb dataset if it is not found locally.
-* **Automated Visualizations:** Automatically generates and saves the Confusion Matrix heatmap into an `images/` directory.
-* **Streamlined Architecture:** Uses a single, highly readable script rather than an overly complex, fragmented folder structure.
+## Tech Stack
 
-## ⚙️ Tech Stack & Methodology
-
-| Component | Details |
+| | |
 |---|---|
-| Language | Python 3.x |
-| Core Libraries | Scikit-learn, NLTK, Pandas, Matplotlib, Seaborn |
-| Text Processing | Lowercasing, Regex Cleaning, Stop Word Removal, WordNet Lemmatization |
-| Feature Extraction | TF-IDF Vectorization (max_features=5000) |
-| Algorithm | Multinomial Naive Bayes |
+| Language | Python 3 |
+| Libraries | scikit-learn, NLTK, pandas, matplotlib, seaborn |
+| Text Preprocessing | Lowercasing, regex cleaning, stop word removal, lemmatization |
+| Vectorization | TF-IDF (5000 features) |
+| Model | Multinomial Naive Bayes |
 
-## 🚀 Quick Start
+## Getting Started
 
-Because the script handles the data downloading automatically, running this project takes only three commands:
+```bash
+git clone https://github.com/siliconsagenerd/NLP_Movie_Reviews.git
+cd NLP_Movie_Reviews
+pip install -r requirements.txt
+python main.py
+```
 
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/siliconsagenerd/NLP_Movie_Reviews.git
-   cd NLP_Movie_Reviews
-   ```
+> The dataset (~84MB) is downloaded automatically on the first run.
 
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Results
 
-3. **Run the pipeline:**
-   ```bash
-   python main.py
-   ```
-   > ⏳ On first run, the script will automatically download the dataset (~84MB). Preprocessing 50,000 reviews takes about 1–2 minutes.
-
-## 📊 Results
-
-| Metric | Negative | Positive |
+| | Negative | Positive |
 |---|---|---|
-| Precision | ~84% | ~84% |
-| Recall | ~84% | ~84% |
-| F1-Score | ~84% | ~84% |
-| **Overall Accuracy** | **84.00%** | |
+| Precision | 83% | 85% |
+| Recall | 86% | 82% |
+| F1-Score | 84% | 84% |
+| **Accuracy** | **84.00%** | |
 
-## 🖼️ Confusion Matrix
+## Confusion Matrix
 
 ![Confusion Matrix](images/confusion_matrix.png)
 
-## 📁 Project Structure
+## Project Structure
 ```
 NLP_Movie_Reviews/
-├── main.py               # Full pipeline: download → clean → train → evaluate
+├── main.py
 ├── README.md
 ├── requirements.txt
 ├── results.txt
 ├── data/
-│   └── dataset_link.txt  # Link to the original Stanford dataset
+│   └── dataset_link.txt
 └── images/
     └── confusion_matrix.png
 ```
 
-## 📂 Dataset
-The 50,000 IMDb movie review dataset is sourced from the [Stanford AI Lab](https://ai.stanford.edu/~amaas/data/sentiment/) and is **downloaded automatically at runtime**. You do not need to download it manually.
-
-## 📄 License
-This project is open source and available under the [MIT License](LICENSE).
+## Dataset
+The dataset is from the [Stanford AI Lab](https://ai.stanford.edu/~amaas/data/sentiment/) and contains 25,000 training and 25,000 test reviews.

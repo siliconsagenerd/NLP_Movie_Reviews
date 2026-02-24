@@ -22,8 +22,7 @@ except AttributeError:
 nltk.download('stopwords', quiet=True)
 nltk.download('wordnet', quiet=True)
 
-# Download and extract dataset if not already present
-url = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
+url = "https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
 filename = "aclImdb_v1.tar.gz"
 
 if not os.path.exists("aclImdb"):
@@ -57,14 +56,12 @@ print("Cleaning reviews...")
 train_df['cleaned'] = train_df['review'].apply(clean_text)
 test_df['cleaned'] = test_df['review'].apply(clean_text)
 
-# TF-IDF vectorization
 vectorizer = TfidfVectorizer(max_features=5000)
 X_train = vectorizer.fit_transform(train_df['cleaned'])
 X_test = vectorizer.transform(test_df['cleaned'])
 y_train = train_df['label']
 y_test = test_df['label']
 
-# Train and evaluate
 model = MultinomialNB()
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
@@ -72,7 +69,6 @@ predictions = model.predict(X_test)
 print(f"\nAccuracy: {accuracy_score(y_test, predictions) * 100:.2f}%")
 print(classification_report(y_test, predictions, target_names=['Negative', 'Positive']))
 
-# Save confusion matrix
 os.makedirs("images", exist_ok=True)
 cm = confusion_matrix(y_test, predictions)
 plt.figure(figsize=(8, 6))
