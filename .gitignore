@@ -1,0 +1,19 @@
+# Dataset (too large for GitHub - auto-downloaded by main.py)
+aclImdb/
+aclImdb_v1.tar.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store

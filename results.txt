@@ -1,0 +1,13 @@
+==========================================
+FINAL PROJECT ACCURACY: 84.00%
+==========================================
+
+Detailed Classification Report:
+              precision    recall  f1-score   support
+
+    Negative       0.83      0.86      0.84     12500
+    Positive       0.85      0.82      0.84     12500
+
+    accuracy                           0.84     25000
+   macro avg       0.84      0.84      0.84     25000
+weighted avg       0.84      0.84      0.84     25000
